@@ -1,0 +1,24 @@
+
+.float-menu {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
+
+.float-main-item,
+.float-sub-item {
+  background-color: #42bd56;
+  border-radius: 50%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  transition: 0.3s transform ease-out;
+}
+
+.float-main-item-image,
+.float-sub-item-image {
+  transition: 0.3s transform ease-out;
+  padding: 23%;
+  box-sizing: border-box;
+}

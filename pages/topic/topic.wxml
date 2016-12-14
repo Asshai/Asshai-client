@@ -1,0 +1,58 @@
+<!-- topic.wxml -->
+<import src="../float-menu/float-menu.wxml" />
+<import src="../common/common.wxml" />
+<view class="container">
+  <scroll-view scroll-y style="height: {{windowHeight}}px;" bindscrolltolower="loadComments">
+    <view class="topic-title">{{topic.title}}</view>
+    <view class="topic-info">
+      <view class="topic-author">
+          <image class="topic-author-avatar" src="{{topic.author_avatar}}"></image>
+          <text class="topic-author-name">{{topic.author_name}}</text>
+      </view>
+      <view class="topic-timestamp">{{topic.create_time}}</view>
+    </view>
+    <view class="topic-content section">
+        <view class="html-el" wx:for="{{contentElements}}">
+          <text wx:if="{{item.type === 'text'}}">{{item.content}}</text>
+          <image
+            wx:if="{{item.type === 'image'}}"
+            mode="scaleToFill"
+            style="width: {{item.width}}px; height: {{item.height}}px;"
+            src="{{item.src}}"
+            bindtap="previewImage"
+          />
+        </view>
+    </view>
+
+    <template name="comment-item">
+      <view class="comment-item">
+        <image class="comment-avatar" src="{{author.avatar}}"/>
+        <view class="comment-right">
+          <view class="comment-user-info">
+            <text class="comment-name">{{author.name}}</text>
+            <text class="comment-time">{{create_time}}</text>
+          </view>
+          <text class="comment-ref" wx:if="{{ref_comment}}">{{ref_comment.text}}</text>
+          <text class="comment-text">{{text}}</text>
+        </view>
+      </view>
+    </template>
+
+    <block wx:if="{{popular_comments && comments}}">
+      <view class="section" wx:if="{{popular_comments.length}}">
+        <view class="sec-title">最热回应</view>
+        <view wx:for="{{popular_comments}}">
+          <template is="comment-item" data="{{...item}}" />
+        </view>
+      </view>
+      <view class="section" wx:if="{{comments.length}}">
+        <view class="sec-title">所有回应</view>
+        <view wx:for="{{comments}}">
+          <template is="comment-item" data="{{...item}}" />
+        </view>
+      </view>
+    </block>
+    <template is="loading" wx:if="{{commentStart < commentTotal}}" />
+    <template is="float-menu" data="{{floatMenu}}" />
+  </scroll-view>
+</view>

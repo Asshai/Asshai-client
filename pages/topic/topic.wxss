@@ -1,0 +1,81 @@
+/* detail.wxss */
+@import "../common/common.wxss";
+@import "../float-menu/float-menu.wxss";
+
+.topic-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.topic-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  font-size: 15px;
+  width: 100%;
+}
+
+.topic-author {
+  display: flex;
+  align-items: center;
+}
+
+.topic-author-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.topic-author-name {
+  color: #494949;
+}
+
+.topic-timestamp {
+  color: #aaa;
+}
+
+.topic-content {
+  line-height: 1.7;
+}
+
+.comment-item {
+  display: flex;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.comment-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.comment-right {
+  flex: 1;
+  padding-bottom: 15px;
+}
+
+.comment-user-info {
+  font-size: 15px;
+  line-height: 36px;
+  display: flex;
+  margin-bottom: 5px;
+  justify-content: space-between;
+}
+
+.comment-time {
+  color: #aaa;
+}
+
+.comment-ref {
+  margin-bottom: 10px;
+  border-left: 2px #42bd56 solid;
+  padding-left: 6px;
+}
+
+.comment-text {
+  font-size: 15px;
+}
