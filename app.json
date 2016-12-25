@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/map/map",
     "pages/topic/topic",
     "pages/fav-topics/fav-topics"
   ],
