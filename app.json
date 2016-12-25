@@ -1,0 +1,13 @@
+{
+  "pages":[
+    "pages/topic/topic",
+    "pages/fav-topics/fav-topics"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fcfcfc",
+    "navigationBarTextStyle":"#9c9c9c",
+    "backgroundColor": "#fcfcfc"
+  },
+  "debug": true
+}

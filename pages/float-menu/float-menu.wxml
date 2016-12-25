@@ -1,0 +1,31 @@
+<template name="float-menu">
+  <view class="float-menu">
+    <view
+      style="width:{{floatMenu.subItemSize}}px; height:{{floatMenu.subItemSize}}px; transform: translate3d(0,{{ floatMenu.showSubItems ? (- floatMenu.mainItemSize - floatMenu.subItemMargin - (floatMenu.subItemMargin + floatMenu.subItemSize) * index) : floatMenu.foldedSubItemsY }}px,0); right: {{- floatMenu.foldedSubItemsY}}px"
+      class="float-sub-item"
+      wx:for="{{floatMenu.subItems}}"
+    >
+      <image
+        mode="aspectFit"
+        class="float-sub-item-image"
+        src="{{item.url}}"
+        style="width: 100%; height: 100%;"
+        bindtap="handleFloatItemTap"
+        data-index="{{index}}"
+      />
+    </view>
+    <view
+      class="float-main-item"
+      style="width:{{floatMenu.mainItemSize}}px; height:{{floatMenu.mainItemSize}}px;"
+    >
+      <image
+        mode="aspectFit"
+        class="float-main-item-image"
+        src="{{floatMenu.mainItem.cur_url}}"
+        style="width: 100%; height: 100%;transform: rotate({{floatMenu.mainItem.rotate}}deg);"
+        bindtap="handleFloatItemTap"
+        data-index="-1"
+      />
+    </view>
+  </view>
+</template>

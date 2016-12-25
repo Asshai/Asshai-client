@@ -1,0 +1,32 @@
+<!-- topic.wxml -->
+<import src="../float-menu/float-menu.wxml" />
+<import src="../common/common.wxml" />
+<view class="container">
+  <scroll-view scroll-y style="height: {{windowHeight}}px;" bindscrolltolower="loadFavTopics">
+
+    <navigator wx:for="{{topicList}}" class="topic-item" url="../topic/topic?id={{item.id}}" open-type="redirect">
+      <view class="topic-detail">
+        <view class="topic-title">{{item.title}}</view>
+        <view class="topic-info">
+          <view class="topic-author">
+            <image class="topic-author-avatar" src="{{item.author_avatar}}" />
+            <view class="topic-author-name">
+              {{item.author_name}}
+            </view>
+          </view>
+          <view class="topic-time">{{item.create_time}}</view>
+        </view>
+      </view>
+      <image
+        class="topic-cover"
+        mode="aspectFill"
+        src="{{item.photo_list[0].alt}}"
+        wx:if="{{item.photo_list.length}}"
+      />
+    </navigator>
+    <template is="loading" wx:if="{{start < total}}" />
+    <view class="empty-message" wx:if="{{ total === 0 }}" >
+      您还没有收藏任何租房帖子，请先去收藏吧~
+    </view>
+  </scroll-view>
+</view>
