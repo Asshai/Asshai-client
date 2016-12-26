@@ -1,0 +1,58 @@
+<view>
+    <map longitude="{{longitude}}"
+         latitude="{{latitude}}"
+         markers="{{markers}}"
+         scale="14"
+         id="map">
+     </map>
+
+    <div class="house-panel hp-{{hpState}}">
+        <div class="hp-switch" bindtap="switchTap"></div>
+
+        <div class="hp-inp-group">
+            <input class="hp-inp" type="text" placeholder="搜索地点" />
+            <icon class="hp-close" type="clear" size="30" hidden="{{showCloseBtn ? false : true}}" bindtap="closeHouseView"></icon>
+        </div>
+
+        <!-- 社区列表 -->
+        <view class="hp-communities-view" hidden="{{showHousesView ? true : false }}">
+            <view wx:if="{{communities.length == 0}}" class="hp-no-content">啊哦，此区域中没有小区</view>
+            <view wx:else class="hp-list">
+                <div class="hp-list-item"
+                     wx:for="{{communities}}"
+                     wx:key="c-{{index}}"
+                     data-index="{{index}}"
+                     data-latitude="{{item.latitude}}"
+                     data-longitude="{{item.longitude}}"
+                     bindtouchstart="highlightMarker"
+                >
+                    <text class="hp-item-name">{{item.name}}</text>
+                    <text class="hp-item-nums">{{item.topics}}</text>
+                    <div class="hp-item-more" bindtap="switchCommunity" data-cid="{{item.id}}"></div>
+                </div>
+            </view>
+        </view>
+
+        <!-- 房子列表 -->
+        <view class="hp-houses-view" hidden="{{showHousesView ? flase : true}}">
+            <view class="loading" hidden="{{showHvLoading ? false : true}}">正在载入...</view>
+            <view wx:if="{{houses.length == 0}}" class="hp-no-content">啊哦，此区域中没有房子</view>
+            <view wx:else class="hp-house-list">
+                <div class="hp-house-list-item"
+                     wx:for="{{houses}}"
+                     data-doubanid="{{item.douban_id}}"
+                     wx:key="h-{{index}}"
+                     bindtap="goTopic"
+                >
+                    <div class="hp-house-item-desc">
+                        <text class="hp-house-item-title">{{item.title}}</text>
+                        <text class="hp-house-item-author">{{item.author_name}}</text>
+                        <text class="hp-house-item-time">{{item.create_time}}</text>
+                    </div>
+                    <image src="{{item.cover}}" class="hp-house-item-img"></image>
+                </div>
+            </view>
+        </view>
+
+    </div>
+</view>
