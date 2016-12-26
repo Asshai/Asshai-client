@@ -663,6 +663,40 @@ commander@^2.9.0:
   dependencies:
     graceful-readlink ">= 1.0.0"
 
+component-closest@*:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/component-closest/download/component-closest-1.0.1.tgz#1ed0464132fc88a3510a2dabec079695789fb1b5"
+  dependencies:
+    component-matches-selector "~0.1.6"
+
+component-delegate@0.2.4:
+  version "0.2.4"
+  resolved "http://registry.npm.taobao.org/component-delegate/download/component-delegate-0.2.4.tgz#dc5028759ea681bea84a3d6bbd650207c3beb138"
+  dependencies:
+    component-closest "*"
+    component-event "*"
+
+component-event@*, component-event@0.1.4:
+  version "0.1.4"
+  resolved "http://registry.npm.taobao.org/component-event/download/component-event-0.1.4.tgz#3de78fc28782381787e24bf2a7c536bf0142c9b4"
+
+component-events@1.0.10:
+  version "1.0.10"
+  resolved "http://registry.npm.taobao.org/component-events/download/component-events-1.0.10.tgz#2e96d166f50089a4b7ac72d56e7756ac1b7e8b83"
+  dependencies:
+    component-delegate "0.2.4"
+    component-event "0.1.4"
+
+component-matches-selector@~0.1.6:
+  version "0.1.6"
+  resolved "http://registry.npm.taobao.org/component-matches-selector/download/component-matches-selector-0.1.6.tgz#7b630e04e7e0c3b0019f31749fd70af5ed8b972e"
+  dependencies:
+    component-query "*"
+
+component-query@*:
+  version "0.0.3"
+  resolved "http://registry.npm.taobao.org/component-query/download/component-query-0.0.3.tgz#07f49dab7071fa9606725df53e607f468acdaacf"
+
 composition@^2.1.1:
   version "2.3.0"
   resolved "http://registry.npm.taobao.org/composition/download/composition-2.3.0.tgz#742805374cab550c520a33662f5a732e0208d6f2"

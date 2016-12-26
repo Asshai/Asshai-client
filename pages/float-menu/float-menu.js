@@ -14,10 +14,10 @@ export function handleFloatItemTap(e, context) {
 }
 
 export function initFloatMenu({
-  mainItem = { url: '../../resources/images/menu.png', closeUrl: '../../resources/images/close.png' },
+  mainItem = { url: '../../resources/images/menu.png', closeUrl: '../../resources/images/close.png', activated: false },
   subItems = [
-    { url: '../../resources/images/star.png', handleTap: (e) => console.log(e) },
-    { url: '../../resources/images/list.png', handleTap: (e) => console.log(e) },
+    { url: '../../resources/images/star.png', handleTap: (e) => console.log(e), activated: false },
+    { url: '../../resources/images/list.png', handleTap: (e) => console.log(e), activated: false },
   ],
   mainItemSize = 45,
   subItemSize = 35,
@@ -34,7 +34,7 @@ export function initFloatMenu({
     mainItemSize,
     subItemSize,
     subItemMargin,
-    subItemsY: showSubItems ? unfoldedSubItemsY : foldedSubItemsY,
+    // subItemsY: showSubItems ? unfoldedSubItemsY : foldedSubItemsY,
     minHeight: Math.max(foldedSubItemsY, mainItemSize),
     minWidth: Math.max(subItemSize, mainItemSize),
     foldedSubItemsY: - (mainItemSize - subItemSize)/2,

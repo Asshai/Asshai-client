@@ -20,44 +20,53 @@ Page({
     loadSysInfo(this, sysInfo =>
       this.loadTopic(sysInfo))
     this.loadComments()
-    initFloatMenu({
-      context: this ,
-      subItems: [
-        { url: '../../resources/images/star.png', handleTap: (e) => this.favTopic() },
-        { url: '../../resources/images/list.png', handleTap: (e) => this.goToFavList() },
-      ]
+    this.getFavList(list => {
+      const faved = list.filter(
+        t => t.douban_id + '' !== this.topicId + '')
+      initFloatMenu({
+        context: this ,
+        subItems: [
+          { url: '../../resources/images/star.png', handleTap: (e) => this.favTopic(), activated: faved },
+          { url: '../../resources/images/list.png', handleTap: (e) => this.goToFavList() },
+        ]
+      })
+    })
+  },
+  getFavList(cb) {
+    wx.getStorage({
+      key: FAV_LIST,
+      success: (res) => cb(res.data || []),
+      fail: (res) => cb([]),
     })
   },
   favTopic() {
-    wx.getStorage({
-      key: FAV_LIST,
-      success: (res) => this.saveFav(res),
-      fail: (res) => this.saveFav(res),
-    })
-  },
-
-  saveFav(res) {
-    if (!this.data.topic.title) return
-    console.log(res)
-    let favList = res.data || []
-    let msg = '收藏成功'
-    const filtered = favList.filter(
-      t => String(t.douban_id) !== String(this.topicId))
-    if (filtered.length === favList.length) {
-      favList.push(this.data.topic)
-    } else {
-      favList = filtered
-      msg = '已取消收藏'
-    }
-    wx.setStorage({
-      key: FAV_LIST,
-      data: favList,
-      fail: e => console.error(e),
-      success: res => wx.showToast({
-        title: msg,
-        icon: 'success',
-        duration: 1500,
+    this.getFavList(list => {
+      if (!this.data.topic.title) return
+      let msg = '收藏成功'
+      let activated = false
+      const filtered = list.filter(
+        t => t.douban_id + '' !== this.topicId + '')
+      if (filtered.length === list.length) {
+        list.push(this.data.topic)
+        activated = true
+      } else {
+        list = filtered
+        msg = '已取消收藏'
+        activated = false
+      }
+      wx.setStorage({
+        key: FAV_LIST,
+        data: list,
+        fail: e => console.error(e),
+        success: res => wx.showToast({
+          title: msg,
+          icon: 'success',
+          duration: 1500,
+        })
       })
+      const { floatMenu } = this.data
+      floatMenu.subItems[0].activated = activated
+      this.setData({ floatMenu })
     })
   },
 

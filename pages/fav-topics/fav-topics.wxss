@@ -5,7 +5,19 @@
   padding: 15px 18px 15px 0;
   margin-right: -18px;
   display: flex;
-  border-bottom: 1px solid #f8f8f8;
+  position: relative;
+}
+
+.topic-item::after {
+  content: '';
+  height: 1px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: #e8e8e8;
+  transform: scaleY(0.5);
+  display: block;
 }
 
 .topic-detail {
@@ -21,6 +33,7 @@
 .topic-title {
   font-size: 16px;
   line-height: 24px;
+  min-height: 48px;
 }
 
 .topic-info {
@@ -50,4 +63,58 @@
   margin-top: 50px;
   display: block;
   line-height: 40px;
+}
+
+.banner {
+  height: 100px;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0 -18px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  overflow: hidden;
+}
+
+.banner-meta {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+  background-color: rgba(0,0,0,0.3);
+  padding: 35rpx 30rpx 30rpx;
+  box-sizing: border-box;
+  font-size: 24px;
+  color: #F3F4F5;
+}
+
+.banner-name {
+  color: #fff;
+  padding-bottom: 25rpx;
+}
+
+.banner-location, .banner-nums {
+  font-size: 12px;
+  font-family: Roboto;
+  color: rgba(255, 255, 255, 0.81);
+}
+
+.banner-nums {
+  position: absolute;
+  bottom: 30rpx;
+}
+
+.banner-distance,
+.banner-houses {
+  padding-right: 30rpx;
+  background-size: contain;
+  background-position: center left;
+  background-repeat: no-repeat;
+  padding-left: 16px;
+}
+.banner-distance {
+  background-image: url('../../resources/images/ic_explore_white_3x.png');
+}
+.banner-houses {
+  background-image: url('../../resources/images/ic_home_white_3x.png');
 }

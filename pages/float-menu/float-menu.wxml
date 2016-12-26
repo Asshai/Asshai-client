@@ -2,7 +2,7 @@
   <view class="float-menu">
     <view
       style="width:{{floatMenu.subItemSize}}px; height:{{floatMenu.subItemSize}}px; transform: translate3d(0,{{ floatMenu.showSubItems ? (- floatMenu.mainItemSize - floatMenu.subItemMargin - (floatMenu.subItemMargin + floatMenu.subItemSize) * index) : floatMenu.foldedSubItemsY }}px,0); right: {{- floatMenu.foldedSubItemsY}}px"
-      class="float-sub-item"
+      class="{{'float-sub-item ' + (item.activated ? 'activated' : '')}}"
       wx:for="{{floatMenu.subItems}}"
     >
       <image
@@ -15,7 +15,7 @@
       />
     </view>
     <view
-      class="float-main-item"
+      class="{{'float-main-item '+ (floatMenu.mainItem.activated ? 'activated' : '')}}"
       style="width:{{floatMenu.mainItemSize}}px; height:{{floatMenu.mainItemSize}}px;"
     >
       <image

@@ -1,9 +1,20 @@
 <!-- topic.wxml -->
 <import src="../float-menu/float-menu.wxml" />
 <import src="../common/common.wxml" />
-<view class="container">
-  <scroll-view scroll-y style="height: {{windowHeight}}px;" bindscrolltolower="loadFavTopics">
-
+<scroll-view class="scroll-container" scroll-y style="height: {{windowHeight}}px;" bindscrolltolower="loadFavTopics">
+    <view class="container">
+    <view class="banner"
+      style="background-image: url('{{banner}}')"
+    >
+      <view class="banner-meta">
+        <text class="banner-name">我的收藏</text>
+        <text class="banner-location"></text>
+        <view class="banner-nums">
+          <!-- <text class="banner-distance">100 m</text> -->
+          <text class="banner-houses">{{total}} 房子</text>
+        </view>
+      </view>
+    </view>
     <navigator wx:for="{{topicList}}" class="topic-item" url="../topic/topic?id={{item.douban_id}}">
       <view class="topic-detail">
         <view class="topic-title">{{item.title}}</view>
@@ -20,13 +31,12 @@
       <image
         class="topic-cover"
         mode="aspectFill"
-        src="{{item.photo_list[0].alt}}"
-        wx:if="{{item.photo_list.length}}"
+        src="{{item.photo_list.length ? item.photo_list[0].alt : '../../resources/images/house.png'}}"
       />
     </navigator>
     <template is="loading" wx:if="{{start < total}}" />
     <text class="empty-message" wx:if="{{ total === 0 }}" >
       您还没有收藏任何租房帖子，\n请先去收藏吧~
     </text>
-  </scroll-view>
-</view>
+  </view>
+</scroll-view>
