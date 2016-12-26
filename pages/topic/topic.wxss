@@ -79,3 +79,7 @@
 .comment-text {
   font-size: 15px;
 }
+
+.html-el {
+  word-break: break-all;
+}

@@ -48,4 +48,6 @@
   text-align: center;
   color: #aaa;
   margin-top: 50px;
+  display: block;
+  line-height: 40px;
 }

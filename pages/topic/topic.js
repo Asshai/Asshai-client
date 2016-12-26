@@ -38,21 +38,22 @@ Page({
   saveFav(res) {
     if (!this.data.topic.title) return
     console.log(res)
-    const favList = res.data || []
-    if (favList.filter(t => String(t.douban_id) === String(this.topicId)).length) {
-      return wx.showToast({
-        title: '已收藏',
-        icon: 'success',
-        duration: 1500,
-      })
+    let favList = res.data || []
+    let msg = '收藏成功'
+    const filtered = favList.filter(
+      t => String(t.douban_id) !== String(this.topicId))
+    if (filtered.length === favList.length) {
+      favList.push(this.data.topic)
+    } else {
+      favList = filtered
+      msg = '已取消收藏'
     }
-    favList.push(this.data.topic)
     wx.setStorage({
       key: FAV_LIST,
       data: favList,
       fail: e => console.error(e),
       success: res => wx.showToast({
-        title: '收藏成功',
+        title: msg,
         icon: 'success',
         duration: 1500,
       })
@@ -67,7 +68,7 @@ Page({
 
   loadTopic(sysInfo) {
     wx.request({
-      url: `http://doubandev2.intra.douban.com:20110/topic/${this.topicId}`,
+      url: `http://doubandev2.intra.douban.com:20110/topic/${this.topicId}/`,
       data: {},
       method: 'GET',
       success: res => {
