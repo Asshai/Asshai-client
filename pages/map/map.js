@@ -1,3 +1,5 @@
+import { proxyImage } from '../common/utils'
+
 const app = getApp();
 
 Page({
@@ -25,6 +27,7 @@ Page({
                     houses: res.data.results.map( e => {
                         let d = new Date( e.create_time );
                         e.create_time = d.toLocaleDateString();
+                        e.cover = proxyImage(e.cover)
                         return e;
                     })
                 });
