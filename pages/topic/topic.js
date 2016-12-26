@@ -16,6 +16,7 @@ Page({
   },
   onLoad(options) {
     this.topicId = options.id || 94574223
+
     loadSysInfo(this, sysInfo =>
       this.loadTopic(sysInfo))
     this.loadComments()

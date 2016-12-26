@@ -4,7 +4,7 @@
 <view class="container">
   <scroll-view scroll-y style="height: {{windowHeight}}px;" bindscrolltolower="loadFavTopics">
 
-    <navigator wx:for="{{topicList}}" class="topic-item" url="../topic/topic?id={{item.douban_id}}" open-type="redirect">
+    <navigator wx:for="{{topicList}}" class="topic-item" url="../topic/topic?id={{item.douban_id}}">
       <view class="topic-detail">
         <view class="topic-title">{{item.title}}</view>
         <view class="topic-info">

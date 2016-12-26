@@ -19,6 +19,10 @@ Page({
           if (title.length > 18) {
             topic.title = topic.title.substring(0, 18) + '...'
           }
+          topic.photo_list = topic.photo_list.map(p => {
+            p.alt = proxyImage(p.alt)
+            return p
+          })
           return topic
         })
         this.setData({ total: this.topicList.length })

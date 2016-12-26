@@ -5,6 +5,7 @@
 .topic-title {
   font-size: 24px;
   font-weight: bold;
+  margin: 15px 0;
 }
 
 .topic-info {
