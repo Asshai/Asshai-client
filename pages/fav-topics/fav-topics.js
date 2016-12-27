@@ -27,6 +27,7 @@ Page({
           })
           return topic
         })
+        if (!banner) banner = '../../resources/images/default-house.png'
         this.setData({ total: this.topicList.length, banner })
         this.loadFavTopics()
       },
