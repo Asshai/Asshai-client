@@ -1,7 +1,7 @@
 <map longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" scale="{{scale}}" id="map"></map>
 
 <view class="search-view">
-    <input type="text" placeholder="搜索周边地区" class="search-input" placeholder-class="search-pl" />
+    <input type="text" placeholder="搜索周边地区" class="search-input" placeholder-class="search-pl" bindinput="inputComfirm" />
 </view>
 
 <view class="swip-view swip-{{swipFull}}">
@@ -9,7 +9,7 @@
     <swiper class="community-view" duration="300" circular="false" bindchange="communitychange">
         <block wx:for="{{communities}}">
             <swiper-item class="community-container">
-                <view class="community"
+                <view class="community community-{{communityFull}}"
                       bindtap="openhouses"
                       data-id="{{item.id}}"
                       style="background-image: url('{{item.cover}}')"
@@ -29,18 +29,23 @@
 
     <!-- 房列表 -->
     <scroll-view class="houses-view" scroll-y="true">
-        <block wx:for="{{houses}}">
-            <view class="house-item">
-                <view class="house-meta">
-                    <text class="house-title">{{item.title}}</text>
-                    <view class="house-author">
-                        <image class="house-author-avatar" src="{{item.author_avatar}}"></image>
-                        <text>{{item.author_name}}</text>
+        <view class="house-loading" hidden="{{hideHouseLoading}}">
+            <image class="house-loading-img" src="../../resources/images/loading_grey.gif"></image>
+        </view>
+        <view hidden="{{hideHouseList}}">
+            <block wx:for="{{houses}}">
+                <view class="house-item" bindtap="go" data-doubanid="{{item.douban_id}}">
+                    <view class="house-meta">
+                        <text class="house-title">{{item.title}}</text>
+                        <view class="house-author">
+                            <image class="house-author-avatar" src="{{item.author_avatar}}"></image>
+                            <text>{{item.author_name}}</text>
+                        </view>
+                        <text class="house-time">{{item.create_time}}</text>
                     </view>
-                    <text class="house-time">{{item.create_time}}</text>
+                    <image mode="aspectFill" class="house-cover" src="{{item.cover}}"></image>
                 </view>
-                <image mode="aspectFill" class="house-cover" src="{{item.cover}}"></image>
-            </view>
-        </block>
+            </block>
+        </view>
     </scroll-view>
 </view>
