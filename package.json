@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/zaaack/Asshai-client#readme",
   "devDependencies": {
-    "wept": "0.7.0-b1"
+    "wept": "@Asshai/wept"
   }
 }

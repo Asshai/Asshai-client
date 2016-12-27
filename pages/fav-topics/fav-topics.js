@@ -14,6 +14,7 @@ Page({
     wx.getStorage({
       key: FAV_LIST,
       success: (res) => {
+        let banner
         this.topicList = res.data.map(topic => {
           const title = topic.title
           if (title.length > 18) {
@@ -21,11 +22,13 @@ Page({
           }
           topic.photo_list = topic.photo_list.map(p => {
             p.alt = proxyImage(p.alt)
+            if (!banner) banner = p.alt
             return p
           })
           return topic
         })
-        this.setData({ total: this.topicList.length })
+        if (!banner) banner = '../../resources/images/default-house.png'
+        this.setData({ total: this.topicList.length, banner })
         this.loadFavTopics()
       },
       fail: (res) => {},

@@ -1,3 +1,3 @@
 <template name="loading">
-  <image class="loading" mode="aspectFit" src="../../resources/images/loading_green.gif" />
+  <image class="loading" mode="aspectFit" src="../../resources/images/loading_grey.gif" />
 </template>

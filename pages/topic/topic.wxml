@@ -3,7 +3,7 @@
 <import src="../common/common.wxml" />
 <view class="container">
   <scroll-view scroll-y style="height: {{windowHeight}}px;" bindscrolltolower="loadComments">
-    <view class="topic-title">{{topic.title}}</view>
+    <text class="topic-title">{{topic.title}}</text>
     <view class="topic-info">
       <view class="topic-author">
           <image class="topic-author-avatar" src="{{topic.author_avatar}}"></image>
@@ -32,7 +32,7 @@
             <text class="comment-name">{{author.name}}</text>
             <text class="comment-time">{{create_time}}</text>
           </view>
-          <text class="comment-ref" wx:if="{{ref_comment}}">{{ref_comment.text}}</text>
+          <text class="comment-ref" wx:if="{{ref_comment && ref_comment.text}}">{{ref_comment.text}}</text>
           <text class="comment-text">{{text}}</text>
         </view>
       </view>
