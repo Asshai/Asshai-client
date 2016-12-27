@@ -1,58 +1,46 @@
-<view>
-    <map longitude="{{longitude}}"
-         latitude="{{latitude}}"
-         markers="{{markers}}"
-         scale="14"
-         id="map">
-     </map>
+<map longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" scale="{{scale}}" id="map"></map>
 
-    <div class="house-panel hp-{{hpState}}">
-        <div class="hp-switch" bindtap="switchTap"></div>
+<view class="search-view">
+    <input type="text" placeholder="搜索周边地区" class="search-input" placeholder-class="search-pl" />
+</view>
 
-        <div class="hp-inp-group">
-            <input class="hp-inp" type="text" placeholder="搜索地点" />
-            <icon class="hp-close" type="clear" size="30" hidden="{{showCloseBtn ? false : true}}" bindtap="closeHouseView"></icon>
-        </div>
-
-        <!-- 社区列表 -->
-        <view class="hp-communities-view" hidden="{{showHousesView ? true : false }}">
-            <view wx:if="{{communities.length == 0}}" class="hp-no-content">啊哦，此区域中没有小区</view>
-            <view wx:else class="hp-list">
-                <div class="hp-list-item"
-                     wx:for="{{communities}}"
-                     wx:key="c-{{index}}"
-                     data-index="{{index}}"
-                     data-latitude="{{item.latitude}}"
-                     data-longitude="{{item.longitude}}"
-                     bindtouchstart="highlightMarker"
+<view class="swip-view swip-{{swipFull}}">
+    <!-- 小区滑动 -->
+    <swiper class="community-view" duration="300" circular="false" bindchange="communitychange">
+        <block wx:for="{{communities}}">
+            <swiper-item class="community-container">
+                <view class="community"
+                      bindtap="openhouses"
+                      data-id="{{item.id}}"
+                      style="background-image: url('{{item.cover}}')"
                 >
-                    <text class="hp-item-name">{{item.name}}</text>
-                    <text class="hp-item-nums">{{item.topics}}</text>
-                    <div class="hp-item-more" bindtap="switchCommunity" data-cid="{{item.id}}"></div>
-                </div>
-            </view>
-        </view>
+                    <view class="community-meta">
+                        <text class="community-name">{{item.name}}</text>
+                        <text class="community-location">{{item.address}}</text>
+                        <view class="community-nums">
+                            <text class="community-distance">{{item.distance}} m</text>
+                            <text class="community-houses">{{item.topics}} 房子</text>
+                        </view>
+                    </view>
+                </view>
+            </swiper-item>
+        </block>
+    </swiper>
 
-        <!-- 房子列表 -->
-        <view class="hp-houses-view" hidden="{{showHousesView ? flase : true}}">
-            <view class="loading" hidden="{{showHvLoading ? false : true}}">正在载入...</view>
-            <view wx:if="{{houses.length == 0}}" class="hp-no-content">啊哦，此区域中没有房子</view>
-            <view wx:else class="hp-house-list">
-                <div class="hp-house-list-item"
-                     wx:for="{{houses}}"
-                     data-doubanid="{{item.douban_id}}"
-                     wx:key="h-{{index}}"
-                     bindtap="goTopic"
-                >
-                    <div class="hp-house-item-desc">
-                        <text class="hp-house-item-title">{{item.title}}</text>
-                        <text class="hp-house-item-author">{{item.author_name}}</text>
-                        <text class="hp-house-item-time">{{item.create_time}}</text>
-                    </div>
-                    <image src="{{item.cover}}" class="hp-house-item-img"></image>
-                </div>
+    <!-- 房列表 -->
+    <scroll-view class="houses-view" scroll-y="true">
+        <block wx:for="{{houses}}">
+            <view class="house-item">
+                <view class="house-meta">
+                    <text class="house-title">{{item.title}}</text>
+                    <view class="house-author">
+                        <image class="house-author-avatar" src="{{item.author_avatar}}"></image>
+                        <text>{{item.author_name}}</text>
+                    </view>
+                    <text class="house-time">{{item.create_time}}</text>
+                </view>
+                <image mode="aspectFill" class="house-cover" src="{{item.cover}}"></image>
             </view>
-        </view>
-
-    </div>
+        </block>
+    </scroll-view>
 </view>
