@@ -44,8 +44,6 @@ map{
 }
 
 .community-view{
-    /*position: absolute;*/
-    /*top: 0;*/
     height: 350rpx;
     width: 100%;
 }
@@ -64,7 +62,14 @@ map{
     background-repeat: no-repeat;
     border-radius: 6px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s;
     overflow: hidden;
+}
+
+.community-full{
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
 }
 
 .community-meta{
@@ -186,4 +191,14 @@ map{
     height: 16px;
     margin-right: 10px;
     border-radius: 50%;
+}
+
+.house-loading{
+    text-align: center;
+    margin-top: 80px;
+}
+
+.house-loading-img{
+    width: 35px;
+    height: 35px;
 }
