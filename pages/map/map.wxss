@@ -62,7 +62,7 @@ map{
     background-repeat: no-repeat;
     border-radius: 6px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    transition: all 0.3s;
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
     overflow: hidden;
 }
 
@@ -121,7 +121,7 @@ map{
     z-index: 10;
     bottom: 0;
     will-change: transform;
-    transition: all 0.3s;
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 .swip-tiny{
     background-color: transparent;
@@ -166,8 +166,13 @@ map{
 .house-title{
     color: #484E56;
     font-size: 17px;
-    padding-bottom: 6px;
+    margin-bottom: 6px;
     line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .house-cover{
