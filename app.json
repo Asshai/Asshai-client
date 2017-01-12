@@ -6,9 +6,10 @@
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fcfcfc",
-    "navigationBarTextStyle":"#9c9c9c",
-    "backgroundColor": "#fcfcfc"
+    "navigationBarBackgroundColor": "#42bd56",
+    "navigationBarTextStyle":"white",
+    "backgroundColor": "#fcfcfc",
+    "navigationBarTitleText": "豆瓣小组 - 租房"
   },
   "debug": true
 }
